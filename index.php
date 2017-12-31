@@ -1,14 +1,9 @@
 <?php
-/*
--------------
-Source code Simple CRUD by PojokCoding.co.id
--------------
-*/
-
 session_start();
 date_default_timezone_set('UTC');
 $notice = '';
-include ('./inc/connect.php');
+$connect = new mysqli('localhost', 'root', '', 'db_store');
+$cookieDomain = '.dekur.com';
 
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']) && $connect->query("SELECT * FROM `user` WHERE `username` = '".mysqli_real_escape_string($connect,$_COOKIE['username'])."' AND `password` = '".mysqli_real_escape_string($connect,$_COOKIE['password'])."'")->num_rows == 1)
 {
@@ -54,6 +49,17 @@ include ('./inc/delete.php');
 else if(isset($_GET['detail']))
 {
 include ('./inc/detail.php');
+}
+else if(isset($_GET['logout']))
+{
+if(empty($uLog->iduser))
+{
+header ('Location: login');
+}
+else
+{
+include ('./inc/logout.php');
+}
 }
 else if(isset($_GET['login']))
 {
