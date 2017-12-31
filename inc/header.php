@@ -58,6 +58,8 @@ else
 {
 echo '
 <li class="nav-item"><a class="nav-link" href="create">Tambah</a></li>
+
+<li class="nav-item"><a class="nav-link" href="logout">Keluar</a></li>
 ';
 }
 echo '
